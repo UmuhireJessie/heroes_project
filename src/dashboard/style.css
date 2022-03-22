@@ -1,0 +1,247 @@
+:root 
+{
+    --bg-background: #f2f2fc;
+    --login-background:#DFFF9B;
+    --skin-color:#3D7073;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background: var(--bg-background);
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+}
+.fixedbar {
+    background: var(--skin-color);
+    position: fixed;
+    z-index: 10;
+}
+.main-content {
+    margin-bottom: 50px;
+}
+.navbar .navbar-brand {
+    margin-left: 20px;
+    font-weight: 30px;
+    color: #fff;
+    font-family: 'Reggae One', cursive;
+}
+
+.nav {
+    margin-right: 2%;
+}
+
+.nav li a {
+    color: #fff;
+    margin-right: 4em;
+    justify-content: space-between;
+    font-size: 14px;
+    font-family: 'Reggae One', cursive;
+    text-decoration: none;
+}
+.nav li a.active {
+    color: #DFFF9B;
+}
+.nav li a:hover {
+    color: #DFFF9B;
+}
+
+/* Hero Dashboard */
+.hero-title {
+    margin-top: 5%;
+}
+.hero-title h4 {
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-bottom: 7%;
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 0.1px
+}
+
+.parent-item .image-item .detail{
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: -50px;
+}
+.image-item {
+    margin-left: 50px;
+    margin-right: 50px
+}
+.parent-item .image-item .image img {
+    width: 100px;
+}
+.hero-name {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--skin-color);
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 700;
+}
+.hero-name:hover {
+    color:rgba(49, 133, 145, 0.87)
+}
+.short-bio, .long-bio{
+    line-height: 1.8em;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.parent-item .image-item .detail .short-bio span {
+    font-weight: bold;
+}
+.parent-item .image-item {
+    padding-bottom: 1.5em;
+    margin-bottom: 1.5em;
+    border-bottom: 1px solid #C4C4C4;
+}
+.view, .update, .delete {
+    text-decoration: none;
+    color: #0EAA30;
+    font-size: 14px;
+    font-weight: bold;
+    float:right;
+    margin-left: 50px;
+    
+}
+.update {
+    color: #FF7A00;
+}
+.delete {
+    color: #FF0000;
+}
+
+/* Retrieving One hero */
+.more-info-one{
+    margin-top: 5em;
+    margin-bottom: 4em;
+}
+.header-hero h4 {
+    padding-top: 4px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+.detail-info {
+    margin-left: 60px;
+    margin-bottom: 30px;
+}
+.detail-info .image img {
+    width: 300px;
+}
+.long-bio {
+    margin-bottom: 5%;
+}
+.time-stamp h5{
+    font-size: 14px;
+    float: right;
+    cursor: pointer;
+}
+.time-stamp h5 span:hover{
+    text-decoration: underline;
+}
+.btn-danger, .btn-warning {
+    padding: 7px 15px;
+    font-size: 13px;
+    margin-top: 3em;
+    margin-right: 4em;
+    font-weight: 600;
+}
+
+footer {
+    background: rgb(32, 44, 43);
+    font-size: 12px;
+    line-height: 3em;
+    color: #ffff;
+    font-family: 'Montserrat', sans-serif;
+    bottom: 0;
+    position: relative;
+}
+footer p {
+    padding-top: 13px;
+    text-align: center;
+}
+
+/* Add a hero */
+main {
+    margin: 8%;
+}
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+.card-header{
+    background: #f5f5fa;
+    border-radius: 0.25rem;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-black-900);
+    justify-items: center;
+    line-height: 45px;
+    border-bottom: 0.5px solid var(--bg-black-50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-md-8{
+    padding-left: 35px;
+}
+.form-group{
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.label{
+    font-size: 16px;
+    font-family: 'Poppins' sans-serif;
+    color: var(--text-black-900);
+    font-weight: 400;   
+}
+.label, .form-control{
+    display: flex;
+}
+#title, #blogimage, #blogdescription{
+    height: 35px;
+    width: 75%;
+
+}
+#blogimage {
+    outline: 1px solid grey;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+#detail{
+    height: 40%; 
+    width: 75%;
+    line-height: 30px;
+    margin-bottom: 15px;
+}
+.text-danger{
+    color: red;
+}
+.btn{
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 7px 20px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    font-family: 'Poppins' sans-serif;
+    background: var(--skin-color);
+}
+
