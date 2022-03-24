@@ -15,26 +15,6 @@
 
 <body>
 
-
-    <!-- <div class="hero">
-
-        <div class="logo">
-            <a href="#"><span>GW17</span></a>
-        </div>
-
-        <div class="nav-toggler">
-            <span></span>
-        </div>
-
-        <ul class="nav">
-            <li><a href="./index.html" class="nav-item" class="active">Home</a></li>
-            <li><a href="./html/about.html" class="nav-item">Heroes</a></li>
-            <li><a href="./html/portfolio.html" class="nav-item">Register</a></li>
-            <li id="login-btn"><a href="./html/login.html" class="tap-login" class="nav-item">Login</a></li>
-            <li id="logout-btn"><a href="#" class="tap-login" onclick="logout()">Logout</a></li>
-        </ul>
-
-    </div> -->
     <div class="container-fluid banner">
         <div class="main-content">
             <div class="row">
@@ -52,10 +32,10 @@
 
                         <ul class="nav">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link active">Home</a>
+                                <a href="#home" class="nav-link active">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Heroes</a>
+                                <a href="#heroList" class="nav-link">Heroes</a>
                             </li>
                             <li class="nav-item">
                                 <a href="./register.html" class="nav-link">Register</a>
@@ -75,7 +55,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="hero-title">
+                <div class="hero-title" id="heroList">
                     <h4>Heroes List</h4>
 
                 </div>

@@ -1,3 +1,49 @@
+<?php
+
+include ('../config/db_connect.php');
+
+$success = 0;
+$user = 0;
+
+if (isset($_POST['submit'])) {
+    $first_name=$_POST['fname'];
+    $last_name=$_POST['lname'];
+    $email=$_POST['email'];
+    $password1=$_POST['password1'];
+    $password2=$_POST['password2'];
+    $hashedPassword1 = password_hash($password1, PASSWORD_DEFAULT);
+    $hashedPassword2 = password_hash($password2, PASSWORD_DEFAULT);
+
+    $sql= "SELECT * FROM user WHERE email= '$email'";
+    $result = mysqli_query($conn, $sql);
+    if($result){
+        $num = mysqli_num_rows($result);
+        if($num>0){
+            $user =1; 
+            echo 'Email already exists';   // sweet alert;
+        }
+        else{
+    $sql = "INSERT INTO user(first_name, last_name, email, password1, password2) VALUES ('$first_name', '$last_name', '$email','$hashedPassword1', '$hashedPassword2' )";
+    $result = mysqli_query($conn, $sql);
+    if($result){
+        $success=1;
+        $_SESSION['status'] = "";  
+        header('location: ./login.php');     
+
+        echo 'success';   // sweet alert
+
+    } else{
+        die(mysqli_error($conn));
+    }
+
+        }
+    }
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +52,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;500;600&family=Reggae+One&display=swap"
@@ -58,10 +105,10 @@
                                 <a href="#" class="nav-link">Heroes</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./register.html" class="nav-link">Register</a>
+                                <a href="./register.php" class="nav-link active">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./login.html" class="nav-link active">Login</a>
+                                <a href="./login.php" class="nav-link">Login</a>
                             </li>
                         </ul>
                     </nav>
@@ -71,25 +118,32 @@
             </div>
 
             <div class="row">
-                <div class="login">
+                <div class="register">
                     
-                    <form>
-                        <div class="form-title login_t">
-                            <h4>Login</h4>
+                    <form action="register.php" method="post">
+                        <div class="form-title">
+                            <h4>Register</h4>
                         </div>
-                        
                         <div class="form-group">
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                          <input type="text" name="fname" class="form-control" id="firstName" placeholder="First Name">
                         </div>
-                        <div class="space"></div>
                         <div class="form-group">
-                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                          <input type="text" name="lname" class="form-control" id="lastName" placeholder="Last Name">
+                        </div>
+                        <div class="form-group">
+                          <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                          <input type="password" name="password1" class="form-control" id="password1" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                          <input type="password" name="password2" class="form-control" id="password2" placeholder="Comfirm Password">
                         </div>
                         
-                        <button type="submit" class="btn btn-primary form-submit login_b">Login</button>
+                        <button type="submit" class="btn btn-primary form-submit" name="submit">Register</button>
                         
-                        <p class="signup-option">Don't have an account? <a
-                            href="./register.html" >Register</a></p>
+                        <p class="signup-option padd-15">Already have an account? <a
+                            href="./login.html">Login</a></p>
                     </form>
 
                 </div>
@@ -103,5 +157,6 @@
 
     </div>
 </body>
+
 
 </html>

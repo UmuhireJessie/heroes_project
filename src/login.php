@@ -1,3 +1,46 @@
+<?php
+
+include ('../config/db_connect.php');
+
+$login = 0;
+$invalid = 0;
+
+
+if (isset($_POST['submit'])) {
+
+    $email=$_POST['email'];
+    $password=$_POST['password1'];  
+    // $hashPass = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql= "SELECT * FROM user WHERE email ='$email'";        // include the password 
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+    
+   
+        
+        if($result){
+        $num = mysqli_num_rows($result);
+        if($num>0){
+            $login=1;
+            session_start();
+            $_SESSION['email']=$email;
+            if($row["role"] == "admin"){
+                header('location: ./dashboard/dashboard.php');
+
+            }else{
+                    header('location:index.php');
+                }
+            }
+            else{
+                $invalid=1;
+            }
+    }
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,10 +101,10 @@
                                 <a href="#" class="nav-link">Heroes</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./register.html" class="nav-link active">Register</a>
+                                <a href="./register.html" class="nav-link">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./login.html" class="nav-link">Login</a>
+                                <a href="./login.html" class="nav-link active">Login</a>
                             </li>
                         </ul>
                     </nav>
@@ -71,29 +114,25 @@
             </div>
 
             <div class="row">
-                <div class="register">
+                <div class="login">
                     
-                    <form>
-                        <div class="form-title">
-                            <h4>Register</h4>
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" id="firstName" placeholder="First Name">
-                        </div>
-                        <div class="form-group">
-                          <input type="text" class="form-control" id="lastName" placeholder="Last Name">
-                        </div>
-                        <div class="form-group">
-                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <form action="login.php" method="POST">
+                        <div class="form-title login_t">
+                            <h4>Login</h4>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary form-submit">Register</button>
+                        <div class="form-group">
+                          <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="space"></div>
+                        <div class="form-group">
+                          <input type="password" class="form-control" id="exampleInputPassword1" name="password1" placeholder="Password">
+                        </div>
                         
-                        <p class="signup-option padd-15">Already have an account? <a
-                            href="./login.html">Login</a></p>
+                        <button type="submit" class="btn btn-primary form-submit login_b" name="submit">Login</button>
+                        
+                        <p class="signup-option">Don't have an account? <a
+                            href="./register.html" >Register</a></p>
                     </form>
 
                 </div>

@@ -1,3 +1,16 @@
+<?php
+
+include ('../../config/db_connect.php');
+
+session_start();
+if(!isset($_SESSION['email'])){
+    echo "email";
+   header('location:login.php');
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,8 +107,8 @@
                                         headmaster of the Xavier Institute of Higher Learning.
                                     </p>
                                     <a href="#" class="delete">Delete</a>
-                                    <a href="#" class="update">Update</a>
-                                    <a href="#" class="view">View</a>    
+                                    <a href="./updatehero.html" class="update">Update</a>
+                                    <a href="./viewhero.html" class="view">View</a>    
                                 </div>
                             </div>
                         </div>

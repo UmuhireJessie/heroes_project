@@ -1,3 +1,15 @@
+<?php
+
+include ('../../config/db_connect.php');
+
+
+
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +78,7 @@
                             <a href="./updatehero.html" class="nav-link">Update</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./login.html" class="nav-link">Login</a>
+                            <a href="../login.html" class="nav-link">Login</a>
                         </li>
                     </ul>
                 </nav>
