@@ -2,6 +2,55 @@
 
 include ('../../config/db_connect.php');
 
+if(isset($_POST['submit'])){
+ 
+    if($_FILES["hero_image"]["error"] == 4){
+        echo " Image Uploading Error";
+    }
+    else{
+        $fileName = $_FILES["hero_image"]["name"];
+        $fileSize = $_FILES["hero_image"]["size"];
+        $tmpName = $_FILES["hero_image"]["tmp_name"];
+        $validImageExtension = ['jpg', 'jpeg', 'png'];
+        $imageExtension = explode('.', $fileName);
+        $imageExtension = strtolower(end($imageExtension));
+        if(!in_array($imageExtension, $validImageExtension)){
+            echo "Invalid Image type";
+ 
+        }
+        else if($fileSize > 1000000){
+            echo "too large"; }
+ 
+        else{
+                $newImageName = uniqid();
+                $newImageName .= '.' . $imageExtension;
+                move_uploaded_file($tmpName, 'images/'.$newImageName);
+           
+        }
+    }
+
+   
+    $file = $_FILES['hero_image']['name'];
+    print_r($file);
+ 
+   
+    $name= $_POST['hero_name'];
+    $real_name=$_POST['real_name'];
+    $short_bio=$_POST['short_bio'];
+    $long_bio=$_POST['long_bio'];
+ 
+    $query = "INSERT INTO heroes (hero_image, hero_name, real_name, short_bio, long_bio)
+     VALUES ('$newImageName', '$name', '$real_name', '$short_bio','$long_bio')";
+ 
+     $result = mysqli_query($conn, $query);
+     if($result){
+         echo "A hero is created successfully";
+     }
+     else{
+         die(mysqli_error($conn));
+     }
+}
+
 
 
 
@@ -27,26 +76,6 @@ include ('../../config/db_connect.php');
 
 <body>
 
-
-    <!-- <div class="hero">
-
-        <div class="logo">
-            <a href="#"><span>GW17</span></a>
-        </div>
-
-        <div class="nav-toggler">
-            <span></span>
-        </div>
-
-        <ul class="nav">
-            <li><a href="./index.html" class="nav-item" class="active">Home</a></li>
-            <li><a href="./html/about.html" class="nav-item">Heroes</a></li>
-            <li><a href="./html/portfolio.html" class="nav-item">Register</a></li>
-            <li id="login-btn"><a href="./html/login.html" class="tap-login" class="nav-item">Login</a></li>
-            <li id="logout-btn"><a href="#" class="tap-login" onclick="logout()">Logout</a></li>
-        </ul>
-
-    </div> -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 fixedbar">
@@ -94,7 +123,7 @@ include ('../../config/db_connect.php');
                         </div>
 
                         <div class="card-body">
-                            <form action="post" id="form">
+                            <form action="addhero.php" method="post" id="form" enctype="multipart/form-data">
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <span class="label label-default">Hero Name <i
@@ -107,7 +136,7 @@ include ('../../config/db_connect.php');
                                         <span class="label label-default">Real Name<i
                                                 class="text-danger">*</i></span>
 
-                                        <input type="text" id="realName" class="form-control ">
+                                        <input type="text" id="realName" class="form-control" name= "real_name">
                                     </div>
                                     <div class="form-group">
                                         <span class="label label-default">Hero Image<i
@@ -121,11 +150,20 @@ include ('../../config/db_connect.php');
                                         <span class="label label-default">Short Bio<i
                                                 class="text-danger">*</i></span>
 
-                                        <textarea name="detail" id="detail" class="form-control " rows="5"
+                                        <textarea name="short_bio" id="short_bio" class="form-control " rows="5"
                                             required="required"></textarea>
 
                                     </div>
-                                    <input class="btn btn-primary" type="submit" value="Submit">
+                                    <div class="form-group">
+
+                                        <span class="label label-default">Long Bio<i
+                                                class="text-danger">*</i></span>
+
+                                        <textarea name="long_bio" id="long_bio" class="form-control " rows="5"
+                                            required="required"></textarea>
+
+                                    </div>
+                                    <input class="btn btn-primary" type="submit" name="submit" value="Submit">
                                 </div>
                             </form>
                         </div>

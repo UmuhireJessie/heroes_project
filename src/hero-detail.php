@@ -1,3 +1,28 @@
+<?php
+
+include('../config/db_connect.php');
+if(isset($_GET['id'])){
+    $id =  mysqli_real_escape_string($conn, $_GET['id']);
+
+    
+
+    $sql = "SELECT * FROM heroes WHERE heroId = $id";
+
+    $result = mysqli_query($conn, $sql);
+
+    $hero = mysqli_fetch_assoc($result);
+
+    mysqli_free_result($result);
+    mysqli_close($conn);
+
+    
+    
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,21 +104,17 @@
                             <img src="../images/proffessor-X" alt="">
                         </div>
                         <div class="detail col-7">
-                            <a href="./hero-detail.html" class="hero-name">Proffesor X</a>
+                            <a href="./hero-detail.html" class="hero-name"><?php echo htmlspecialchars(($hero['hero_name'])); ?></a>
                             <div class="short-bio">
-                                <p><span>Charles Xavier</span> is the founder of the X-Men and was the original
-                                    headmaster of the Xavier Institute of Higher Learning.
+                                <p><span><?php echo htmlspecialchars(($hero['real_name'])); ?></a></span> 
+                                    <?php echo htmlspecialchars(($hero['short_bio'])); ?>
                                 </p>
                             </div>
 
                             <div class="long-bio">
-                                <p>Professor Charles Xavier is the creator of the X-Men and founder of the Xavier
-                                    School for Gifted Youngsters. His dream of peaceful coexistence between mutants
-                                    and humanity has long been the driving force for the X-Men. An immensely powerful
-                                    telepath and scientific genius, Xavier was among the world's greatest masterminds.
-                                    Killed at the hands of a Phoenix crazed Cyclops, Xavier's memory and dream still
-                                    remains and motivates his X-Men to keep fighting for a world that fears and hates
-                                    them.</p>
+                                <p>
+                                    <?php echo htmlspecialchars(($hero['long_bio'])); ?>
+                                </p>
                             </div>
 
                             <div class="time-stamp">
