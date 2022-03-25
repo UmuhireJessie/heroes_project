@@ -101,12 +101,12 @@ if(isset($_GET['id'])){
                 <div class="detail-info">
                     <div class="row">
                         <div class=" image col-4">
-                            <img src="../images/proffessor-X" alt="">
+                        <img src="./images/<?php echo htmlspecialchars(($hero['hero_image'])); ?>" alt="">
                         </div>
                         <div class="detail col-7">
-                            <a href="./hero-detail.html" class="hero-name"><?php echo htmlspecialchars(($hero['hero_name'])); ?></a>
+                            <a href="./hero-detail.php" class="hero-name"><?php echo htmlspecialchars(($hero['hero_name'])); ?></a>
                             <div class="short-bio">
-                                <p><span><?php echo htmlspecialchars(($hero['real_name'])); ?></a></span> 
+                                <p> 
                                     <?php echo htmlspecialchars(($hero['short_bio'])); ?>
                                 </p>
                             </div>
@@ -131,7 +131,7 @@ if(isset($_GET['id'])){
 
         <div class="row">
             <footer>
-                <p>Copyright &copy; 2019 Web Development Assignment</p>
+                <p>Copyright &copy; 2022 Web Development Assignment</p>
             </footer>
         </div>
 

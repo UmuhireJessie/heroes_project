@@ -103,7 +103,7 @@
 
         <div class="row">
             <footer>
-                <p>Copyright &copy; 2019 Web Development Assignment</p>
+                <p>Copyright &copy; 2022 Web Development Assignment</p>
             </footer>
         </div>
 

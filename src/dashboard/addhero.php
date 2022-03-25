@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
  
         }
         else if($fileSize > 1000000){
-            echo "too large"; }
+            echo "Image is too large"; }
  
         else{
                 $newImageName = uniqid();
@@ -51,12 +51,7 @@ if(isset($_POST['submit'])){
      }
 }
 
-
-
-
-
 ?>
-
 
 
 <!DOCTYPE html>
@@ -92,22 +87,16 @@ if(isset($_POST['submit'])){
 
                     <ul class="nav">
                         <li class="nav-item">
-                            <a href="./dashboard.html" class="nav-link">Dashboard</a>
+                            <a href="./dashboard.php" class="nav-link">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a href="../index.html" class="nav-link">Home</a>
+                            <a href="../index.php" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./viewhero.html" class="nav-link">View</a>
+                            <a href="./addhero.php" class="nav-link active">Add</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./addhero.html" class="nav-link active">Add</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./updatehero.html" class="nav-link">Update</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../login.html" class="nav-link">Login</a>
+                            <a href="../login.php" class="nav-link">Login</a>
                         </li>
                     </ul>
                 </nav>

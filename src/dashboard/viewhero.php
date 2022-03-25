@@ -1,3 +1,22 @@
+<?php
+
+include('../../config/db_connect.php');
+if(isset($_GET['id'])){
+    $id =  mysqli_real_escape_string($conn, $_GET['id']);
+
+    $sql = "SELECT * FROM heroes WHERE heroId = $id";
+
+    $result = mysqli_query($conn, $sql);
+
+    $hero = mysqli_fetch_assoc($result);
+
+    mysqli_free_result($result);
+    mysqli_close($conn);
+    
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,26 +34,6 @@
 
 <body>
 
-
-    <!-- <div class="hero">
-
-        <div class="logo">
-            <a href="#"><span>GW17</span></a>
-        </div>
-
-        <div class="nav-toggler">
-            <span></span>
-        </div>
-
-        <ul class="nav">
-            <li><a href="./index.html" class="nav-item" class="active">Home</a></li>
-            <li><a href="./html/about.html" class="nav-item">Heroes</a></li>
-            <li><a href="./html/portfolio.html" class="nav-item">Register</a></li>
-            <li id="login-btn"><a href="./html/login.html" class="tap-login" class="nav-item">Login</a></li>
-            <li id="logout-btn"><a href="#" class="tap-login" onclick="logout()">Logout</a></li>
-        </ul>
-
-    </div> -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 fixedbar">
@@ -51,22 +50,19 @@
 
                     <ul class="nav">
                         <li class="nav-item">
-                            <a href="./dashboard.html" class="nav-link">Dashboard</a>
+                            <a href="./dashboard.php" class="nav-link">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a href="../index.php" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./viewhero.html" class="nav-link active">View</a>
+                            <a href="./viewhero.php?id=<?php echo $hero['heroId']?>" class="nav-link active">View</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./addhero.html" class="nav-link">Add</a>
+                            <a href="./addhero.php" class="nav-link">Add</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./updatehero.html" class="nav-link">Update</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./login.html" class="nav-link">Login</a>
+                            <a href="../login.php" class="nav-link">Login</a>
                         </li>
                     </ul>
                 </nav>
@@ -82,30 +78,27 @@
                 <div class="detail-info">
                     <div class="row">
                         <div class=" image col-4">
-                            <img src="../../images/proffessor-X" alt="">
+                            <img src="./images/<?php echo htmlspecialchars(($hero['hero_image'])); ?>" alt="">
                         </div>
                         <div class="detail col-7">
-                            <a href="./hero-detail.html" class="hero-name">Proffesor X</a>
+                            <a href="./viewhero.php?id=<?php echo $hero['heroId']?>" class="hero-name"><?php echo htmlspecialchars(($hero['hero_name'])); ?></a>
                             <div class="short-bio">
-                                <p><span>Charles Xavier</span> is the founder of the X-Men and was the original
-                                    headmaster of the Xavier Institute of Higher Learning.
+                                <p>
+                                    <span><?php echo $hero['real_name'] ?></span>
+                                    <?php echo htmlspecialchars(($hero['short_bio'])); ?>
                                 </p>
                             </div>
 
                             <div class="long-bio">
-                                <p>Professor Charles Xavier is the creator of the X-Men and founder of the Xavier
-                                    School for Gifted Youngsters. His dream of peaceful coexistence between mutants
-                                    and humanity has long been the driving force for the X-Men. An immensely powerful
-                                    telepath and scientific genius, Xavier was among the world's greatest masterminds.
-                                    Killed at the hands of a Phoenix crazed Cyclops, Xavier's memory and dream still
-                                    remains and motivates his X-Men to keep fighting for a world that fears and hates
-                                    them.</p>
+                                <p><?php echo htmlspecialchars(($hero['long_bio'])); ?></p>
                             </div>
 
                             <div class="time-stamp">
                                 <h5>Created at: <span>20.03.2022 11:33: 45</span></h5>
-                                <button type="submit" class="btn btn-danger">update</button>
-                                <button type="submit" class="btn btn-warning">Delete</button>
+                                <a href="delete.php?id=<?php echo $hero['heroId']?>" class="btn btn-danger">Delete</a>
+                                <!-- <a href="update.php?id=<?php echo $hero['heroId']?>" class="btn btn-danger">Update</a> -->
+                                <button type="submit" class="btn btn-warning">update</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -118,7 +111,7 @@
 
         <div class="row">
             <footer>
-                <p>Copyright &copy; 2019 Web Development Assignment</p>
+                <p>Copyright &copy; 2020 Web Development Assignment</p>
             </footer>
         </div>
 
