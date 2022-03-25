@@ -2,7 +2,9 @@
 
 include ('../config/db_connect.php');
 
-$success = 0;
+?>
+
+<?php
 $user = 0;
 
 if (isset($_POST['submit'])) {
@@ -14,34 +16,56 @@ if (isset($_POST['submit'])) {
     $hashedPassword1 = password_hash($password1, PASSWORD_DEFAULT);
     $hashedPassword2 = password_hash($password2, PASSWORD_DEFAULT);
 
-    $sql= "SELECT * FROM user WHERE email= '$email'";
-    $result = mysqli_query($conn, $sql);
+    $email_query= "SELECT * FROM user WHERE email= '$email'";
+    $result = mysqli_query($conn, $email_query);
+    
     if($result){
         $num = mysqli_num_rows($result);
         if($num>0){
-            $user =1; 
-            echo 'Email already exists';   // sweet alert;
+            $_SESSION['status'] = 'Email already exists'; 
+            echo 'success';
+            ?>
+            
+            <script>
+                swal({
+                    title: "Good job!",
+                    text: "You clicked the button!",
+                    icon: "success",
+                });
+            </script>
+            
+            <?php
+            
+            header('location: register.php');
         }
         else{
-    $sql = "INSERT INTO user(first_name, last_name, email, password1, password2) VALUES ('$first_name', '$last_name', '$email','$hashedPassword1', '$hashedPassword2' )";
-    $result = mysqli_query($conn, $sql);
-    if($result){
-        $success=1;
-        $_SESSION['status'] = "";  
-        header('location: ./login.php');     
+        $sql = "INSERT INTO user(first_name, last_name, email, password1, password2) VALUES ('$first_name', '$last_name', '$email','$hashedPassword1', '$hashedPassword2' )";
+        $result = mysqli_query($conn, $sql);
+            if($result){
+                $_SESSION['status'] = "";  
+                ?>
+                <script>
+                swal({
+                    title: "Good job!",
+                    text: "You clicked the button!",
+                    icon: "success",
+                });
+            </script>
+            <?php
+                header('location: ./login.php');     
 
-        echo 'success';   // sweet alert
+                echo 'success';   // sweet alert
 
-    } else{
-        die(mysqli_error($conn));
-    }
+            } else{
+                die(mysqli_error($conn));
+            }
 
         }
     }
 }
-
-
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -99,7 +123,7 @@ if (isset($_POST['submit'])) {
 
                         <ul class="nav">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">Home</a>
+                                <a href="./index.php" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Heroes</a>
@@ -143,7 +167,7 @@ if (isset($_POST['submit'])) {
                         <button type="submit" class="btn btn-primary form-submit" name="submit">Register</button>
                         
                         <p class="signup-option padd-15">Already have an account? <a
-                            href="./login.html">Login</a></p>
+                            href="./login.php">Login</a></p>
                     </form>
 
                 </div>
@@ -157,6 +181,16 @@ if (isset($_POST['submit'])) {
 
     </div>
 </body>
+
+<script src="js/sweetalert.min.js"></script>
+<!-- <script>
+    swal({
+  title: "Good job!",
+  text: "You clicked the button!",
+  icon: "success",
+});
+</script> -->
+
 
 
 </html>

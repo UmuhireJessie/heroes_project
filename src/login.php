@@ -95,16 +95,16 @@ if (isset($_POST['submit'])) {
 
                         <ul class="nav">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">Home</a>
+                                <a href="./index.php" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">Heroes</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./register.html" class="nav-link">Register</a>
+                                <a href="./register.php" class="nav-link">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a href="./login.html" class="nav-link active">Login</a>
+                                <a href="./login.php" class="nav-link active">Login</a>
                             </li>
                         </ul>
                     </nav>

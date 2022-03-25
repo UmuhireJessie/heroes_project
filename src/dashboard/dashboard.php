@@ -2,12 +2,6 @@
 
 include ('../../config/db_connect.php');
 
-session_start();
-if(!isset($_SESSION['email'])){
-    echo "email";
-   header('location:login.php');
-}
-
 ?>
 
 
@@ -93,18 +87,28 @@ if(!isset($_SESSION['email'])){
                     <h4>Heroes List</h4>
 
                 </div>
-                <div class="parent-item">
-                    <div class="image-item">
 
+                <?php 
+                    $sql = "SELECT * FROM heroes";
+                    $result = mysqli_query($conn, $sql); 
+                ?>
+
+                <div class="parent-item">
+                    <?php
+                        if ($result) {
+                            foreach ($result as $row) {
+                    ?>
+                    <div class="image-item">
                         <div class="row">
                             <div class=" image col-2">
-                                <img src="../../images/proffessor-X" alt="">
+                                <img src="<?php echo "images/".$row['hero_image'] ?>" alt="">
                             </div>
                             <div class="detail col-9">
-                                <a href="./hero-detail.html" class="hero-name">Proffesor X</a>
+                                <a href="./hero-detail.html" class="hero-name"><?php echo $row['hero_name'] ?></a>
                                 <div class="short-bio">
-                                    <p><span>Charles Xavier</span> is the founder of the X-Men and was the original
-                                        headmaster of the Xavier Institute of Higher Learning.
+                                    <p>
+                                        <span><?php echo $row['real_name'] ?></span> 
+                                        <?php echo $row['short_bio'] ?>
                                     </p>
                                     <a href="#" class="delete">Delete</a>
                                     <a href="./updatehero.html" class="update">Update</a>
@@ -112,7 +116,14 @@ if(!isset($_SESSION['email'])){
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        }
+                    } else {
+                        echo "no record found";
+                    }
+                    ?>
                     </div>
+                    
 
                     <div class="image-item">
 
