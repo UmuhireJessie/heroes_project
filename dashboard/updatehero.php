@@ -1,11 +1,22 @@
 <?php
 
 include('../config/db_connect.php');
-if(count($_POST)>0){
-    
-    mysqli_query($conn, "UPDATE heroes set hero_image='" . $_POST['hero_image'] . "', hero_name='" . 
-    $_POST['hero_name'] . "', real_name='" . $_POST['real_name'] . "'short_bio='" . 
-    $_POST['short_bio'] . "'long_bio='" . $_POST['long_bio']);
+
+if(count($_POST)>0) {
+
+
+    $heroImage = $_POST['hero_image'];
+    $heroName = $_POST['hero_name'];
+    $realName = $_POST['real_name']; 
+    $shortBio = $_POST['short_bio'];
+    $longBio = $_POST['long_bio'];
+
+    $heroName = mysqli_real_escape_string($conn,  $heroName);
+    $realName = mysqli_real_escape_string($conn, $realName); 
+    $shortBio = mysqli_real_escape_string($conn, $shortBio);
+    $longBio = mysqli_real_escape_string($conn, $longBio);
+
+    mysqli_query($conn, "UPDATE `heroes` SET `hero_image`='$heroImage', `hero_name`='$heroName', `real_name`='$realName', `short_bio`='$shortBio', `long_bio`='$longBio' WHERE `heroId` ='" . $_GET['id'] . "'");
 
     $message = "<p p style='color:green;'> The Hero information is updated successfully! </p>";   
 }
@@ -37,7 +48,7 @@ $row = mysqli_fetch_array($result);
             <div class="col-md-12 fixedbar">
                 <nav class="navbar">
                     <div class="navbar-brand">
-                        GW17
+                        GW11
                     </div>
 
                     <div class="hamburger" id="nav-toggle" name="menu-outline">
@@ -76,7 +87,7 @@ $row = mysqli_fetch_array($result);
                         </div>
 
                         <div class="card-body">
-                            <form action="updatehero.php" method="post" id="form">
+                            <form action="" method="post" id="form">
                                 <div class="col-md-8">
                                     <div> <?php if(isset($message)) {echo $message; } ?> </div>
                                     <div class="form-group"> 
@@ -104,7 +115,7 @@ $row = mysqli_fetch_array($result);
                                                 class="text-danger">*</i></span>
 
                                         <textarea name="short_bio" id="shortBio" class="form-control " rows="5"
-                                            required="required" value="<?php echo $row['short_bio']; ?>"></textarea>
+                                            required="required"><?php echo $row['short_bio']; ?></textarea>
 
                                     </div>
                                     <div class="form-group">
@@ -113,7 +124,7 @@ $row = mysqli_fetch_array($result);
                                                 class="text-danger">*</i></span>
 
                                         <textarea name="long_bio" id="longBio" class="form-control " rows="5"
-                                            required="required" value="<?php echo $row['long_bio']; ?>"></textarea>
+                                            required="required"><?php echo $row['long_bio']; ?></textarea>
 
                                     </div>
                                     <input class="btn btn-primary" name="submit" type="submit" value="Submit">

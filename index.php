@@ -106,10 +106,10 @@ include ('./config/db_connect.php');
         </div>
 
 
-        <div class="row_footer">
-                <footer>
-                    <p>Copyright &copy; 2022 Web Development Assignment</p>
-                </footer>
+        <div class="row">
+            <footer>
+                <p>Copyright &copy; 2022 Web Development Assignment</p>
+            </footer>
         </div>
 
     </div>

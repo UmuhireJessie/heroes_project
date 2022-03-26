@@ -78,7 +78,7 @@ include ('../config/db_connect.php');
                                 <img src="<?php echo "images/".$row['hero_image'] ?>" alt="">
                             </div>
                             <div class="detail col-9">
-                                <a href="../hero-detail.php" class="hero-name"><?php echo $row['hero_name'] ?></a>
+                                <a href="viewhero.php?id=<?php echo $row['heroId']?>" class="hero-name"><?php echo $row['hero_name'] ?></a>
                                 <div class="short-bio">
                                     <p>
                                         <span><?php echo $row['real_name'] ?></span> 

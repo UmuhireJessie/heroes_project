@@ -169,7 +169,7 @@ body{
     text-decoration: underline;
 }
 
-.row_footer, footer{
+footer{
     background: rgb(32, 44, 43);
     font-size: 12px;
     line-height: 3em;

@@ -38,13 +38,23 @@ if(isset($_POST['submit'])){
     $real_name=$_POST['real_name'];
     $short_bio=$_POST['short_bio'];
     $long_bio=$_POST['long_bio'];
+
+    $name = mysqli_real_escape_string($conn, $name);
+    $real_name = mysqli_real_escape_string($conn, $real_name); 
+    $short_bio = mysqli_real_escape_string($conn, $short_bio);
+    $long_bio = mysqli_real_escape_string($conn, $long_bio);
  
     $query = "INSERT INTO heroes (hero_image, hero_name, real_name, short_bio, long_bio)
      VALUES ('$newImageName', '$name', '$real_name', '$short_bio','$long_bio')";
  
      $result = mysqli_query($conn, $query);
      if($result){
-         echo "A hero is created successfully";
+        echo "A hero is created successfully";
+        $newImageName = "";
+        $name= "";
+        $real_name="";
+        $short_bio="";
+        $long_bio="";
      }
      else{
          die(mysqli_error($conn));
@@ -118,21 +128,21 @@ if(isset($_POST['submit'])){
                                         <span class="label label-default">Hero Name <i
                                                 class="text-danger">*</i></span>
 
-                                        <input type="text" name="hero_name" id="headId" class="form-control">
+                                        <input type="text" name="hero_name" id="headId" class="form-control" required="required">
                                     </div>
                                     <div class="form-group">
 
                                         <span class="label label-default">Real Name<i
                                                 class="text-danger">*</i></span>
 
-                                        <input type="text" id="realName" class="form-control" name= "real_name">
+                                        <input type="text" id="realName" class="form-control" name= "real_name" required="required">
                                     </div>
                                     <div class="form-group">
                                         <span class="label label-default">Hero Image<i
                                                 class="text-danger">*</i></span>
 
                                         <input type="file" name="hero_image" id="heroImage"
-                                            class="form-control">
+                                            class="form-control" required="required">
                                     </div>
                                     <div class="form-group">
 
