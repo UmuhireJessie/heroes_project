@@ -56,7 +56,7 @@ include ('./config/db_connect.php');
 
                 <div class="col-md-6 offset-md-3 info">
                     <h1 class="text-center landing">Welcome To Group 11's Web Development Assignemt</h1>
-                    <a href="#" class="btn btn-md text-center">Learn More</a>
+                    <a href="./index.php#heroList" class="btn btn-md text-center">Learn More</a>
 
                 </div>
             </div>

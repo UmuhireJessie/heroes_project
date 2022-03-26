@@ -162,7 +162,7 @@ if(isset($_POST['submit'])){
                                             required="required"></textarea>
 
                                     </div>
-                                    <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+                                    <input class="btn btn-primary" type="submit" name="submit" value="Save">
                                 </div>
                             </form>
                         </div>

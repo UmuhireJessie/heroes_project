@@ -8,7 +8,8 @@ if(isset($_GET['id'])){
     $sql="DELETE FROM heroes WHERE heroId=$id";
     $result=mysqli_query($conn, $sql);
     if($result){
-        echo 'deleted';
+        $message = "<p p style='color:green;'> The Hero information is updated successfully! </p>";
+        echo $message;
     }else{
         die(mysqli_error($conn));
     }

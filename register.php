@@ -12,9 +12,7 @@ if (isset($_POST['submit'])) {
     $last_name=$_POST['lname'];
     $email=$_POST['email'];
     $password1=$_POST['password1'];
-    $password2=$_POST['password2'];
     $hashedPassword1 = password_hash($password1, PASSWORD_DEFAULT);
-    $hashedPassword2 = password_hash($password2, PASSWORD_DEFAULT);
 
     $email_query= "SELECT * FROM user WHERE email= '$email'";
     $result = mysqli_query($conn, $email_query);
@@ -39,7 +37,7 @@ if (isset($_POST['submit'])) {
             header('location: register.php');
         }
         else{
-        $sql = "INSERT INTO user(first_name, last_name, email, password1, password2) VALUES ('$first_name', '$last_name', '$email','$hashedPassword1', '$hashedPassword2' )";
+        $sql = "INSERT INTO user(first_name, last_name, email, password1) VALUES ('$first_name', '$last_name', '$email','$hashedPassword1')";
         $result = mysqli_query($conn, $sql);
             if($result){
                 $_SESSION['status'] = "";  
@@ -137,10 +135,7 @@ if (isset($_POST['submit'])) {
                           <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
                         </div>
                         <div class="form-group">
-                          <input type="password" name="password1" class="form-control" id="password1" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                          <input type="password" name="password2" class="form-control" id="password2" placeholder="Comfirm Password">
+                          <input type="password" name="password1" class="form-control" id="password1" placeholder="Enter password">
                         </div>
                         
                         <button type="submit" class="btn btn-primary form-submit" name="submit">Register</button>

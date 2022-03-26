@@ -10,9 +10,8 @@ if (isset($_POST['submit'])) {
 
     $email=$_POST['email'];
     $password=$_POST['password1'];  
-    // $hashPass = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql= "SELECT * FROM user WHERE email ='$email'";        // include the password 
+    $sql= "SELECT * FROM user WHERE email ='$email'";     
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     
@@ -27,8 +26,8 @@ if (isset($_POST['submit'])) {
             if($row["role"] == "admin"){
                 header('location: ./dashboard/dashboard.php');
 
-            }else{
-                    header('location:index.php');
+            }else{  
+                header('location:index.php');  
                 }
             }
             else{
@@ -57,27 +56,6 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-
-
-    <!-- <div class="hero">
-
-        <div class="logo">
-            <a href="#"><span>GW17</span></a>
-        </div>
-
-        <div class="nav-toggler">
-            <span></span>
-        </div>
-
-        <ul class="nav">
-            <li><a href="./index.html" class="nav-item" class="active">Home</a></li>
-            <li><a href="./html/about.html" class="nav-item">Heroes</a></li>
-            <li><a href="./html/portfolio.html" class="nav-item">Register</a></li>
-            <li id="login-btn"><a href="./html/login.html" class="tap-login" class="nav-item">Login</a></li>
-            <li id="logout-btn"><a href="#" class="tap-login" onclick="logout()">Logout</a></li>
-        </ul>
-
-    </div> -->
 
     <div class="container-fluid">
             <div class="row">
@@ -129,7 +107,7 @@ if (isset($_POST['submit'])) {
                           <input type="password" class="form-control" id="exampleInputPassword1" name="password1" placeholder="Password">
                         </div>
                         
-                        <button type="submit" class="btn btn-primary form-submit login_b" name="submit">Login</button>
+                        <button type="submit" class="btn btn-primary form-submit" name="submit">Login</button>
                         
                         <p class="signup-option">Don't have an account? <a
                             href="./register.php" >Register</a></p>

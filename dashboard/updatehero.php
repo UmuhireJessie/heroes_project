@@ -127,7 +127,7 @@ $row = mysqli_fetch_array($result);
                                             required="required"><?php echo $row['long_bio']; ?></textarea>
 
                                     </div>
-                                    <input class="btn btn-primary" name="submit" type="submit" value="Submit">
+                                    <input class="btn btn-primary" name="submit" type="submit" value="Save">
                                 </div>
                             </form>
                         </div>
