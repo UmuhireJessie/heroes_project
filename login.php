@@ -1,6 +1,6 @@
 <?php
 
-include ('../config/db_connect.php');
+include ('./config/db_connect.php');
 
 $login = 0;
 $invalid = 0;
@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
                 <div class="col-md-12 fixedbar">
                     <nav class="navbar">
                         <div class="navbar-brand">
-                            GW17
+                            GW11
                         </div>
 
                         <div class="hamburger" id="nav-toggle" name="menu-outline">
@@ -98,7 +98,7 @@ if (isset($_POST['submit'])) {
                                 <a href="./index.php" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Heroes</a>
+                                <a href="./index.php#heroList" class="nav-link" >Heroes</a>
                             </li>
                             <li class="nav-item">
                                 <a href="./register.php" class="nav-link">Register</a>
@@ -132,7 +132,7 @@ if (isset($_POST['submit'])) {
                         <button type="submit" class="btn btn-primary form-submit login_b" name="submit">Login</button>
                         
                         <p class="signup-option">Don't have an account? <a
-                            href="./register.html" >Register</a></p>
+                            href="./register.php" >Register</a></p>
                     </form>
 
                 </div>
@@ -140,7 +140,7 @@ if (isset($_POST['submit'])) {
 
             <div class="row">
                 <footer>
-                    <p>Copyright &copy; 2019 Web Development Assignment</p>
+                    <p>Copyright &copy; 2022 Web Development Assignment</p>
                 </footer>
             </div>
 

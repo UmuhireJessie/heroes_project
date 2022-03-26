@@ -1,6 +1,6 @@
 <?php
 
-include('../../config/db_connect.php');
+include('../config/db_connect.php');
 if(isset($_GET['id'])){
     $id =  mysqli_real_escape_string($conn, $_GET['id']);
 
@@ -96,8 +96,7 @@ if(isset($_GET['id'])){
                             <div class="time-stamp">
                                 <h5>Created at: <span>20.03.2022 11:33: 45</span></h5>
                                 <a href="delete.php?id=<?php echo $hero['heroId']?>" class="btn btn-danger">Delete</a>
-                                <!-- <a href="update.php?id=<?php echo $hero['heroId']?>" class="btn btn-danger">Update</a> -->
-                                <button type="submit" class="btn btn-warning">update</button>
+                                <a href="updatehero.php?id=<?php echo $hero['heroId']?>" class="btn btn-danger">Update</a>
                                 
                             </div>
                         </div>

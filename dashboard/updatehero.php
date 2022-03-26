@@ -1,3 +1,20 @@
+<?php
+
+include('../config/db_connect.php');
+if(count($_POST)>0){
+    
+    mysqli_query($conn, "UPDATE heroes set hero_image='" . $_POST['hero_image'] . "', hero_name='" . 
+    $_POST['hero_name'] . "', real_name='" . $_POST['real_name'] . "'short_bio='" . 
+    $_POST['short_bio'] . "'long_bio='" . $_POST['long_bio']);
+
+    $message = "<p p style='color:green;'> The Hero information is updated successfully! </p>";   
+}
+$result = mysqli_query($conn, "SELECT * FROM heroes WHERE heroId='" . $_GET['id'] . "'");
+$row = mysqli_fetch_array($result);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +57,7 @@
                             <a href="./addhero.php" class="nav-link">Add</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./updatehero.html" class="nav-link active">Update</a>
+                            <a href="updatehero.php?id=<?php echo $row['heroId']?>" class="nav-link active">Update</a>
                         </li>
                         <li class="nav-item">
                             <a href="../login.php" class="nav-link">Login</a>
@@ -59,38 +76,47 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="post" id="form">
+                            <form action="updatehero.php" method="post" id="form">
                                 <div class="col-md-8">
-                                    <div class="form-group">
+                                    <div> <?php if(isset($message)) {echo $message; } ?> </div>
+                                    <div class="form-group"> 
                                         <span class="label label-default">Hero Name <i
                                                 class="text-danger">*</i></span>
 
-                                        <input type="text" name="hero_name" id="headId" class="form-control">
+                                        <input type="text" name="hero_name" id="headId" class="form-control" value="<?php echo $row['hero_name']; ?>">
                                     </div>
                                     <div class="form-group">
 
                                         <span class="label label-default">Real Name<i
                                                 class="text-danger">*</i></span>
 
-                                        <input type="text" id="realName" class="form-control ">
+                                        <input type="text" name="real_name" id="realName" class="form-control" value="<?php echo $row['real_name']; ?>">
                                     </div>
                                     <div class="form-group">
                                         <span class="label label-default">Hero Image<i
                                                 class="text-danger">*</i></span>
 
-                                        <input type="file" name="hero_image" id="heroImage"
-                                            class="form-control">
+                                        <input type="file" name="hero_image" id="heroImage" class="form-control" value="<?php echo $row['hero_image']; ?>">
                                     </div>
                                     <div class="form-group">
 
                                         <span class="label label-default">Short Bio<i
                                                 class="text-danger">*</i></span>
 
-                                        <textarea name="detail" id="detail" class="form-control " rows="5"
-                                            required="required"></textarea>
+                                        <textarea name="short_bio" id="shortBio" class="form-control " rows="5"
+                                            required="required" value="<?php echo $row['short_bio']; ?>"></textarea>
 
                                     </div>
-                                    <input class="btn btn-primary" type="submit" value="Submit">
+                                    <div class="form-group">
+
+                                        <span class="label label-default">Long Bio<i
+                                                class="text-danger">*</i></span>
+
+                                        <textarea name="long_bio" id="longBio" class="form-control " rows="5"
+                                            required="required" value="<?php echo $row['long_bio']; ?>"></textarea>
+
+                                    </div>
+                                    <input class="btn btn-primary" name="submit" type="submit" value="Submit">
                                 </div>
                             </form>
                         </div>

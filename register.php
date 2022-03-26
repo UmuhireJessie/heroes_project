@@ -1,6 +1,6 @@
 <?php
 
-include ('../config/db_connect.php');
+include ('./config/db_connect.php');
 
 ?>
 
@@ -86,33 +86,12 @@ if (isset($_POST['submit'])) {
 
 <body>
 
-
-    <!-- <div class="hero">
-
-        <div class="logo">
-            <a href="#"><span>GW17</span></a>
-        </div>
-
-        <div class="nav-toggler">
-            <span></span>
-        </div>
-
-        <ul class="nav">
-            <li><a href="./index.html" class="nav-item" class="active">Home</a></li>
-            <li><a href="./html/about.html" class="nav-item">Heroes</a></li>
-            <li><a href="./html/portfolio.html" class="nav-item">Register</a></li>
-            <li id="login-btn"><a href="./html/login.html" class="tap-login" class="nav-item">Login</a></li>
-            <li id="logout-btn"><a href="#" class="tap-login" onclick="logout()">Logout</a></li>
-        </ul>
-
-    </div> -->
-
     <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 fixedbar">
                     <nav class="navbar">
                         <div class="navbar-brand">
-                            GW17
+                            GW11
                         </div>
 
                         <div class="hamburger" id="nav-toggle" name="menu-outline">
@@ -126,7 +105,7 @@ if (isset($_POST['submit'])) {
                                 <a href="./index.php" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Heroes</a>
+                                <a href="./index.php#heroList" class="nav-link">Heroes</a>
                             </li>
                             <li class="nav-item">
                                 <a href="./register.php" class="nav-link active">Register</a>
@@ -175,7 +154,7 @@ if (isset($_POST['submit'])) {
 
             <div class="row">
                 <footer>
-                    <p>Copyright &copy; 2019 Web Development Assignment</p>
+                    <p>Copyright &copy; 2022 Web Development Assignment</p>
                 </footer>
             </div>
 

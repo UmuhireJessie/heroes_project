@@ -1,6 +1,6 @@
 <?php
 
-include('../config/db_connect.php');
+include('./config/db_connect.php');
 if(isset($_GET['id'])){
     $id =  mysqli_real_escape_string($conn, $_GET['id']);
 
@@ -14,14 +14,9 @@ if(isset($_GET['id'])){
 
     mysqli_free_result($result);
     mysqli_close($conn);
-
-    
-    
+   
 }
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,32 +35,12 @@ if(isset($_GET['id'])){
 
 <body>
 
-
-    <!-- <div class="hero">
-
-        <div class="logo">
-            <a href="#"><span>GW17</span></a>
-        </div>
-
-        <div class="nav-toggler">
-            <span></span>
-        </div>
-
-        <ul class="nav">
-            <li><a href="./index.html" class="nav-item" class="active">Home</a></li>
-            <li><a href="./html/about.html" class="nav-item">Heroes</a></li>
-            <li><a href="./html/portfolio.html" class="nav-item">Register</a></li>
-            <li id="login-btn"><a href="./html/login.html" class="tap-login" class="nav-item">Login</a></li>
-            <li id="logout-btn"><a href="#" class="tap-login" onclick="logout()">Logout</a></li>
-        </ul>
-
-    </div> -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 fixedbar">
                 <nav class="navbar">
                     <div class="navbar-brand">
-                        GW17
+                        GW11
                     </div>
 
                     <div class="hamburger" id="nav-toggle" name="menu-outline">
@@ -76,16 +51,16 @@ if(isset($_GET['id'])){
 
                     <ul class="nav">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link">Home</a>
+                            <a href="./index.php" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">Heroes</a>
+                            <a href="./hero-detail.php?id=<?php echo $hero['heroId']?>" class="nav-link active">Heroes</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./register.html" class="nav-link">Register</a>
+                            <a href="./register.php" class="nav-link">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a href="./login.html" class="nav-link">Login</a>
+                            <a href="./login.php" class="nav-link">Login</a>
                         </li>
                     </ul>
                 </nav>
@@ -101,7 +76,7 @@ if(isset($_GET['id'])){
                 <div class="detail-info">
                     <div class="row">
                         <div class=" image col-4">
-                        <img src="./images/<?php echo htmlspecialchars(($hero['hero_image'])); ?>" alt="">
+                        <img src="./dashboard/images/<?php echo htmlspecialchars(($hero['hero_image'])); ?>" alt="">
                         </div>
                         <div class="detail col-7">
                             <a href="./hero-detail.php" class="hero-name"><?php echo htmlspecialchars(($hero['hero_name'])); ?></a>

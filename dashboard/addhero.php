@@ -1,6 +1,6 @@
 <?php
 
-include ('../../config/db_connect.php');
+include ('../config/db_connect.php');
 
 if(isset($_POST['submit'])){
  
@@ -76,7 +76,7 @@ if(isset($_POST['submit'])){
             <div class="col-md-12 fixedbar">
                 <nav class="navbar">
                     <div class="navbar-brand">
-                        GW17
+                        GW11
                     </div>
 
                     <div class="hamburger" id="nav-toggle" name="menu-outline">
